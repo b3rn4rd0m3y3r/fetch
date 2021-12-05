@@ -1,0 +1,25 @@
+<meta charset="utf-8">
+<script>
+function getTag(sele){
+	return document.querySelector(sele);
+	}
+function init(){
+	var myHeaders = new Headers();
+	myHeaders.append('Content-Type','text/plain; charset=utf-8');
+
+	fetch('arq.txt', myHeaders)
+		.then(function (response) {
+		    return response.arrayBuffer();
+		})
+		.then(function (buffer) {
+		    const decoder = new TextDecoder('iso-8859-1');
+		    const text = decoder.decode(buffer);
+		    getTag("#main").innerText = text;
+		    console.log(text);
+		});
+	}
+</script>
+<body onload="init();">
+	<div id="main">
+	</div>
+</body>

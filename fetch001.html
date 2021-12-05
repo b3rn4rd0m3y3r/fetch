@@ -1,0 +1,17 @@
+<script>
+function init(){
+	var myHeaders = new Headers();
+	myHeaders.append('Content-Type','text/plain; charset=iso-8859-1');
+
+	fetch('arq.txt', myHeaders)
+		.then(function (response) {
+		    return response.text();
+		})
+		.then(function (result) {
+		    console.log(result);
+		});
+	}
+</script>
+<body onload="init();">
+	
+</body>
