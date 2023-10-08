@@ -1,0 +1,32 @@
+<head>
+	<script>
+		function goResp(xData){
+			console.log("Data:");
+			console.log(xData);
+			var resultados = xData.results;
+			var S = "<table border=1 cellspacing=0>";
+			for( item in resultados ){
+				S += "<tr><td>"+item+"</td><td>"+resultados[item].name+"</td><td><a href=\""+resultados[item].url+"\" target=\"_new\">Info</a></td></tr>";
+				}
+			S += "</table>";
+			var d = document.getElementById("app");
+			d.innerHTML = S;
+			}
+		function init(){
+			fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",
+			{
+				headers: {
+				  'Content-Type': 'application/json'
+				},
+				method: "GET",
+			})
+				.then(response=>response.json())
+				.then(data=>{ goResp(data); })
+			.catch(function(res){ console.log(res) })
+			}
+	</script>
+</head>
+<body onload="init()">
+	<h1>Lista de 20 Pokemons com INFO de cada um</h1>
+	<div id="app"></div>
+</body>

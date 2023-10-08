@@ -1,0 +1,23 @@
+<head>
+	<script>
+		function goResp(xData){
+			console.log("Data:");
+			console.log(xData);
+			}
+		function init(){
+			fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",
+			{
+				headers: {
+				  'Content-Type': 'application/json'
+				},
+				method: "GET",
+			})
+				.then(response=>response.json())
+				.then(data=>{ goResp(data); })
+			.catch(function(res){ console.log(res) })
+			}
+	</script>
+</head>
+<body onload="init()">
+	<h1>Abra o dev-tools para ver o resultado [F12]</h1>
+</body>
